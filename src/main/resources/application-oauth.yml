@@ -1,0 +1,25 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 1234567890-abcdefghijklmnopqrstuvwxyz.apps.googleusercontent.com
+            client-secret: abcdefghijklmnopqrstuvwxyz
+            scope:
+              - email
+              - profile
+
+          kakao:
+            client-id: 1234567890abcdef1234567890abcdef
+            client-secret: abcdefghijklmnopqrstuvwxyz
+            scope:
+              - profile
+              - email
+
+          naver:
+            client-id: 1234567890abcdef1234567890abcdef
+            client-secret: abcdefghijklmnopqrstuvwxyz
+            scope:
+              - profile
+              - email
