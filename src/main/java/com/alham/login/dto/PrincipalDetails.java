@@ -1,10 +1,12 @@
 package com.alham.login.dto;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 public record PrincipalDetails(OAuth2SaveUser user, Map<String,Object> attributes, String attributeName) implements OAuth2User, UserDetails {
@@ -17,21 +19,21 @@ public record PrincipalDetails(OAuth2SaveUser user, Map<String,Object> attribute
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getName();
     }
 
     @Override
     public Map<String, Object> getAttributes() {
-        return null;
+        return attributes;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getKey()));
     }
 
     @Override
     public String getName() {
-        return null;
+        return attributes.get(attributeName).toString();
     }
 }
