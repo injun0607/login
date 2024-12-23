@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
 public interface OAuthUserRepository {
     Optional<OAuth2SaveUser> findByEmail(String email);
     OAuth2SaveUser save(OAuth2SaveUser member);

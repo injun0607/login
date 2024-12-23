@@ -9,17 +9,3 @@ spring:
             scope:
               - email
               - profile
-
-          kakao:
-            client-id: 1234567890abcdef1234567890abcdef
-            client-secret: abcdefghijklmnopqrstuvwxyz
-            scope:
-              - profile
-              - email
-
-          naver:
-            client-id: 1234567890abcdef1234567890abcdef
-            client-secret: abcdefghijklmnopqrstuvwxyz
-            scope:
-              - profile
-              - email

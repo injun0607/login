@@ -1,1 +1,12 @@
-spring.application.name=login
+spring:
+  application:
+    name: login
+  config:
+    import: classpath:application-oauth.yml
+
+jwt:
+  key: AlhamAndSeoHeeisFirstProduction#@!@@
+  access:
+    exp: 3600
+  refresh:
+    exp: 86400

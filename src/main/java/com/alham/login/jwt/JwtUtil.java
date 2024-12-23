@@ -4,6 +4,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -14,14 +15,35 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
+
     //문자열은 최소 256비트(32글자정도) 이상이여야함
-    private final String SECRET_KEY = "AlhamAndSeoHeeisFirstProduction#@!@@";
+    @Value("${jwt.secret}")
+    private String SECRET_KEY;
+
+    @Value("${jwt.access.exp}")
+    private String ACCESS_TOKEN_EXPIRE_TIME;
+
+    @Value("${jwt.refresh.exp}")
+    private String REFRESH_TOKEN_EXPIRE_TIME;
+
+
 
 
     private SecretKey getSigningKey() {
         String encoded = Base64.getEncoder().encodeToString(SECRET_KEY.getBytes());
         byte[] keyBytes = Decoders.BASE64.decode(encoded);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public String generateRefreshToken(String id, String subject) {
+        Date now = new Date();
+        return Jwts.builder()
+                .id(id)
+                .subject(subject)
+                .issuedAt(now)
+                .signWith(getSigningKey())
+                .expiration(new Date(now.getTime() + REFRESH_TOKEN_EXPIRE_TIME)) // 7일
+                .compact();
     }
 
     /**
@@ -38,7 +60,7 @@ public class JwtUtil {
                 .subject(subject)
                 .issuedAt(now)
                 .signWith(getSigningKey())
-                .expiration(new Date(now.getTime() + 1000 * 60 * 60 * 10)) // 10시간
+                .expiration(new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_TIME)) // 10시간
                 .compact();
     }
 
