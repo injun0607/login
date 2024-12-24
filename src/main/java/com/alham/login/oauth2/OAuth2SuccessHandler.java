@@ -19,7 +19,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     private final JwtUtil jwtUtil;
 
-    private final static String URI = "http://localhost:3000/oauth2/redirect";
+    private final static String URI = "http://localhost:8080/login/success";
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {

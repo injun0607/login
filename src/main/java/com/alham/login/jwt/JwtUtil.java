@@ -17,7 +17,7 @@ public class JwtUtil {
 
 
     //문자열은 최소 256비트(32글자정도) 이상이여야함
-    @Value("${jwt.secret}")
+    @Value("${jwt.key}")
     private String SECRET_KEY;
 
     @Value("${jwt.access.exp}")

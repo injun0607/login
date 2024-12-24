@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Login Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .login-buttons {
+            margin-top: 20px;
+        }
+
+        .login-buttons button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .google {
+            background-color: #db4437;
+            color: white;
+        }
+
+        .facebook {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .github {
+            background-color: #333;
+            color: white;
+        }
+
+        .twitter {
+            background-color: #1da1f2;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+<h1>Login Test Page</h1>
+<p>Select a login method to continue:</p>
+
+<div class="login-buttons">
+    <button onclick="location.href='/oauth2/authorization/kakao';"  class="google">Login with Kakao</button>
+    <button class="facebook">Login with Naver</button>
+    <button class="github">Login with Google</button>
+    <button class="twitter">Login with Apple</button>
+</div>
+</body>
+</html>

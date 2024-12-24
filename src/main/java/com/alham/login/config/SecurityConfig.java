@@ -28,9 +28,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizeRequests ->
                                 authorizeRequests
-//                                .requestMatchers("/login/**").permitAll()
-//                                .anyRequest().authenticated()
-                                        .anyRequest().permitAll()
+                                .requestMatchers("/login/**").permitAll()
+                                .anyRequest().authenticated()
+//                                        .anyRequest().permitAll()
                 )
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)
@@ -41,7 +41,7 @@ public class SecurityConfig {
                         oauth2Login.userInfoEndpoint(userInfoEndpoint ->
                                 userInfoEndpoint.userService(customOAuth2UserService))
                                 .successHandler(oAuth2SuccessHandler)
-                                .failureUrl("/login") //fail시 이동할 url
+                                .failureUrl("/login/login") //fail시 이동할 url
                         )
                 .addFilterBefore(new JwtRequestFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(exceptionHandling ->
